@@ -1,0 +1,130 @@
+[
+	{	
+		"id":0,
+		"text":"Меняли ли вы фамилию?",
+		"answer": [
+			{
+				"yes": {
+					"text":"Укажите старую фамилию",
+					"form": [
+						{
+							"type":"input",
+							"placeholder":"Старая фамилия",
+							"value":null
+						}
+					]
+				}
+			},
+			{
+				"no":null
+			}
+		]
+	},
+	{
+		"id":1,
+		"text":"Проживаете ли по прописке?",
+		"answer":[
+			{
+				"yes":null			
+			},
+			{
+				"no": {
+					"text":"Укажите адрес проживания",
+					"form": [
+						{
+							"type":"input",
+							"placeholder":"Страна",
+							"value":null
+						},
+						{
+							"type":"input",
+							"placeholder":"Регион",
+							"value":null
+						},
+						{
+							"type":"input",
+							"placeholder":"Город",
+							"value":null
+						},
+						{
+							"type":"input",
+							"placeholder":"Адрес",
+							"value":null
+						},
+						{
+							"type":"input",
+							"placeholder":"Индекс",
+							"value":null
+						}
+					]		
+				}
+			}
+		]
+	},
+	{
+		"id":2,
+		"text":"Ранее сдавали биометрию?",
+		"answer":[
+			{
+				"yes":null
+			},
+			{
+				"no":null
+			}		
+		]
+	},
+	{
+		"id":3,
+		"text":"Есть родственники в ЕС и/или Швецарии?",
+		"answer":[
+			{
+				"yes":{
+					"text":"Укажите родственников",
+					"form": [
+						{
+							"type":"add",
+							"placeholder":"Добавить",
+							"value":null,
+							"form":[
+								{
+									"type":"input",
+									"placeholder":"Имя",
+									"value":null
+								},
+								{
+									"type":"input",
+									"placeholder":"Фамилия",
+									"value":null
+								},
+								{
+									"type":"input",
+									"placeholder":"Пол",
+									"value":null
+								},
+								{
+									"type":"input",
+									"placeholder":"Страна",
+									"value":null
+								}
+							]
+						}
+					]
+				}	
+			},
+			{
+				"no":null
+			}		
+		]
+	},
+	{
+		"id":4,
+		"text":"Укажите что нибудь.",
+		"form": [
+			{
+				"type":"input",
+				"placeholder":"что нибудь",
+				"value":null
+			}
+		]
+	}
+]

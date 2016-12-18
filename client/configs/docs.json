@@ -1,0 +1,27 @@
+[
+	{
+		"id": 0,
+		"img":"./../../static/img/zagran.jpg",	
+		"text":"загранпаспорт"
+	},		
+	{
+		"id": 1,
+		"img":"./../../static/img/zagran1.JPG",
+		"text":"фотография"
+	},
+	{
+		"id": 2,
+		"img":"./../../static/img/zagran.jpg",
+		"text":"авиабилеты"
+	},
+	{
+		"id": 3,
+		"img":"./../../static/img/zagran.jpg",
+		"text":"броньотеля"
+	},
+	{
+		"id": 4,
+		"img":"./../../static/img/zagran.jpg",
+		"text":"загранпаспорт"
+	}
+]
