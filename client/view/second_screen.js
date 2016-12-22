@@ -39,7 +39,9 @@ export default class SecondScreen extends Component {
 						})
 					}</ul>
 			</div>
-				<PhotoGenerator tabIndex={this.state.focused} />
+				<form encType="multipart/form-data" method="post">
+				<PhotoGenerator tabIndex={this.state.focused} WorkData={this.state.workingWithData} />
+				</form>
 				<QandAGenerator tabIndex={this.state.focused} />
 				<div id="customer-data">
 					<label htmlFor="number">Номер телефона</label>

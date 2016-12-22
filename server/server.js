@@ -10,7 +10,7 @@ app.use((req, res, next) => {
 	res.header('Access-Control-Allow-Headers', 'Content-Type'); 
 	next();
 })
-app.get('/drive', require('./routes/to-drive.js'));
+app.post('/drive', require('./routes/to-drive.js'));
 
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, './../static/index.html'));

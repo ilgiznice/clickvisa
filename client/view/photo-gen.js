@@ -9,13 +9,16 @@ export default class PhotoGenerator extends Component {
 		this.state = {
 			tabs: tabs,
 			docs: docs,
+			workingWithData: this.props.WorkData
 		}
 	}
 
 	render() {
 		let tabs = this.state.tabs,
 			docs = this.state.docs;
-		
+		let handler = () => {
+			this.state.workingWithData.getPhotos();
+		}
 		return (
 				<div id = "photo-form">
 					{
@@ -23,7 +26,7 @@ export default class PhotoGenerator extends Component {
 							for(let j = 0, len = docs.length; j < len; j++) {
 								if(item == docs[j].id)
 									return <label key={i}>{docs[j].text}
-												<input id={docs[j].text} type="file" className="photo_upload" name={docs[j].text}/>
+												<input id={docs[j].text} type="file" className="photo_upload" name={docs[j].text} onClick={handler}/>
 										   </label>
 							}
 						})
