@@ -13,7 +13,7 @@ export default class FirstScreen extends Component {
 				<input type = "text" className = "country" />
 				<input type = "text" className = "mission" />
 				<div id = "div_select" className = "people_count">
-				
+				<input id="continue" type="submit" value="продолжить" />
 				</div> 
 			</div> 
 		);

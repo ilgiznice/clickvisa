@@ -22,10 +22,9 @@ export default class PhotoGenerator extends Component {
 						tabs[this.props.tabIndex].docs.map((item, i) => {
 							for(let j = 0, len = docs.length; j < len; j++) {
 								if(item == docs[j].id)
-									return <div key={i}>
-												<p>{docs[j].text}</p>
-												<input type="file" className="photo_upload" />
-										   </div>
+									return <label key={i}>{docs[j].text}
+												<input id={docs[j].text} type="file" className="photo_upload" name={docs[j].text}/>
+										   </label>
 							}
 						})
 					}
