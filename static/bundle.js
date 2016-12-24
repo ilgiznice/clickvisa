@@ -21655,7 +21655,7 @@
 
 	var _qaGen2 = _interopRequireDefault(_qaGen);
 
-	var _get_data = __webpack_require__(197);
+	var _get_data = __webpack_require__(188);
 
 	var _get_data2 = _interopRequireDefault(_get_data);
 
@@ -21721,11 +21721,7 @@
 							})
 						)
 					),
-					_react2.default.createElement(
-						'form',
-						{ encType: 'multipart/form-data', method: 'post' },
-						_react2.default.createElement(_photoGen2.default, { tabIndex: this.state.focused, WorkData: this.state.workingWithData })
-					),
+					_react2.default.createElement(_photoGen2.default, { tabIndex: this.state.focused, WorkData: this.state.workingWithData }),
 					_react2.default.createElement(_qaGen2.default, { tabIndex: this.state.focused }),
 					_react2.default.createElement(
 						'div',
@@ -21872,22 +21868,16 @@
 
 				var tabs = this.state.tabs,
 				    docs = this.state.docs;
-				var handler = function handler() {
-					_this2.state.workingWithData.getPhotos();
+				var handler = function handler(e) {
+					_this2.state.workingWithData.getPhotos(e.target);
 				};
 				return _react2.default.createElement(
-					'div',
-					{ id: 'photo-form' },
-					tabs[this.props.tabIndex].docs.map(function (item, i) {
-						for (var j = 0, len = docs.length; j < len; j++) {
-							if (item == docs[j].id) return _react2.default.createElement(
-								'label',
-								{ key: i },
-								docs[j].text,
-								_react2.default.createElement('input', { id: docs[j].text, type: 'file', className: 'photo_upload', name: docs[j].text, onClick: handler })
-							);
-						}
-					})
+					'form',
+					{ id: 'uploadForm',
+						enctype: 'multipart/form-data',
+						action: '/drive',
+						method: 'post' },
+					_react2.default.createElement('input', { type: 'file', name: 'userPhoto' })
 				);
 			}
 		}]);
@@ -32069,7 +32059,95 @@
 	];
 
 /***/ },
-/* 188 */,
+/* 188 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _superagent = __webpack_require__(189);
+
+	var _superagent2 = _interopRequireDefault(_superagent);
+
+	var _formData = __webpack_require__(198);
+
+	var _formData2 = _interopRequireDefault(_formData);
+
+	var _path = __webpack_require__(196);
+
+	var _path2 = _interopRequireDefault(_path);
+
+	var _questions = __webpack_require__(187);
+
+	var _questions2 = _interopRequireDefault(_questions);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var WorkData = function () {
+		function WorkData(data) {
+			_classCallCheck(this, WorkData);
+
+			this.data = {};
+		}
+
+		_createClass(WorkData, [{
+			key: 'getPhotos',
+			value: function getPhotos(e) {
+				console.log(JSON.stringify(e.files));
+				_superagent2.default.post('/drive').set('Content-Type', 'application/json').send(JSON.stringify(e.files)).end(function (err, res) {
+					if (err) console.log(err);
+					console.log(res);
+				});
+			}
+		}, {
+			key: 'getData',
+			value: function getData() {
+				var data = this.data;
+				var qInputs = document.getElementById('question-form').getElementsByTagName('input');
+				var custInput = document.getElementById('customer-data').getElementsByTagName('input');
+
+				for (var i = 0, len = qInputs.length; i < len; i++) {
+					if (!qInputs[i].name) {
+						data[qInputs[i].placeholder] = qInputs[i].value;
+					} else if (qInputs[i].name) {
+						if (qInputs[i].checked == true) data[_questions2.default[parseInt(qInputs[i].name, 10)].text] = qInputs[i].value;
+					}
+				}
+				for (var _i = 0, _len = custInput.length; _i < _len; _i++) {
+					if (custInput[_i].type == "text") {
+						data.important = [];
+						data.important.push(custInput[0].name, custInput[0].value);
+						data.important.push(custInput[1].name, custInput[1].value);
+					}
+				}console.log(data);
+				this.dataUpload(data);
+			}
+		}, {
+			key: 'dataUpload',
+			value: function dataUpload(data) {
+				_superagent2.default.post('/drive').set('Content-Type', 'application/json').send(JSON.stringify(data)).end(function (err, res) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log(res);
+					}
+				});
+			}
+		}]);
+
+		return WorkData;
+	}();
+
+	exports.default = WorkData;
+
+/***/ },
 /* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -33949,152 +34027,6 @@
 
 /***/ },
 /* 196 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-/***/ },
-/* 197 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _superagent = __webpack_require__(189);
-
-	var _superagent2 = _interopRequireDefault(_superagent);
-
-	var _fs = __webpack_require__(196);
-
-	var _fs2 = _interopRequireDefault(_fs);
-
-	var _path = __webpack_require__(243);
-
-	var _path2 = _interopRequireDefault(_path);
-
-	var _questions = __webpack_require__(187);
-
-	var _questions2 = _interopRequireDefault(_questions);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var WorkData = function () {
-		function WorkData(data) {
-			_classCallCheck(this, WorkData);
-
-			this.data = {};
-		}
-
-		_createClass(WorkData, [{
-			key: 'getPhotos',
-			value: function getPhotos() {
-				var _this = this;
-
-				var fileInput = document.getElementById('photo-form').getElementsByTagName('input');
-				fileInput.onchange = function () {
-					console.log(_this);
-				};
-				//fs.readFile(, function (err, data) {
-				//	var newPath = __dirname + "";
-				//	fs.writeFile(newPath, data, function (err) {
-				//	    res.redirect("back");
-				//	});
-				//});
-			}
-		}, {
-			key: 'getData',
-			value: function getData() {
-				var data = this.data;
-				var qInputs = document.getElementById('question-form').getElementsByTagName('input');
-				for (var i = 0, len = qInputs.length; i < len; i++) {
-					if (!qInputs[i].name) {
-						data[qInputs[i].placeholder] = qInputs[i].value;
-					} else if (qInputs[i].name) {
-						if (qInputs[i].checked == true) data[_questions2.default[parseInt(qInputs[i].name, 10)].text] = qInputs[i].value;
-					}
-				}
-				var custInput = document.getElementById('customer-data').getElementsByTagName('input');
-				for (var _i = 0, _len = custInput.length; _i < _len; _i++) {
-					if (custInput[_i].type == "text") {
-						data.important = [];
-						data.important.push(custInput[0].name, custInput[0].value);
-						data.important.push(custInput[1].name, custInput[1].value);
-					}
-				}console.log(data);
-				this.dataUpload(data);
-			}
-		}, {
-			key: 'dataUpload',
-			value: function dataUpload(data) {
-				_superagent2.default.post('/drive').set('Content-Type', 'application/json').send(JSON.stringify(data)).end(function (err, res) {
-					if (err) {
-						console.log(err);
-					} else {
-						console.log(res);
-					}
-				});
-			}
-		}]);
-
-		return WorkData;
-	}();
-
-	exports.default = WorkData;
-
-/***/ },
-/* 198 */,
-/* 199 */,
-/* 200 */,
-/* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */,
-/* 207 */,
-/* 208 */,
-/* 209 */,
-/* 210 */,
-/* 211 */,
-/* 212 */,
-/* 213 */,
-/* 214 */,
-/* 215 */,
-/* 216 */,
-/* 217 */,
-/* 218 */,
-/* 219 */,
-/* 220 */,
-/* 221 */,
-/* 222 */,
-/* 223 */,
-/* 224 */,
-/* 225 */,
-/* 226 */,
-/* 227 */,
-/* 228 */,
-/* 229 */,
-/* 230 */,
-/* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */,
-/* 239 */,
-/* 240 */,
-/* 241 */,
-/* 242 */,
-/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -34319,6 +34251,18 @@
 	  return str.substr(start, len);
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 197 */,
+/* 198 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	/* eslint-env browser */
+	module.exports = (typeof self === 'undefined' ? 'undefined' : _typeof(self)) == 'object' ? self.FormData : window.FormData;
 
 /***/ }
 /******/ ]);

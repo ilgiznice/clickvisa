@@ -7,7 +7,7 @@ module.exports = {
 		},
 	resolveLoader: { root: path.join(__dirname, 'node_modules') },
 	resolve: {
-			root: path.join(__dirname, 'client'),
+			root: path.join(__dirname, 'server'),
 			modulesDirectories: ['node_modules'],
 			extensions: ['', '.js', '.json']
 		},
@@ -17,6 +17,7 @@ module.exports = {
 		},
 	node: {
 			child_process: 'empty',
+			fs:  'empty',
 			dns: 'empty',
 			net: 'empty',
 			tls: 'empty'
