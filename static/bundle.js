@@ -21527,13 +21527,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _first_screen = __webpack_require__(179);
+	var _main_screen = __webpack_require__(179);
 
-	var _first_screen2 = _interopRequireDefault(_first_screen);
-
-	var _second_screen = __webpack_require__(180);
-
-	var _second_screen2 = _interopRequireDefault(_second_screen);
+	var _main_screen2 = _interopRequireDefault(_main_screen);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21555,12 +21551,7 @@
 		_createClass(App, [{
 			key: 'render',
 			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(_first_screen2.default, null),
-					_react2.default.createElement(_second_screen2.default, null)
-				);
+				return _react2.default.createElement(_main_screen2.default, null);
 			}
 		}]);
 
@@ -21571,64 +21562,6 @@
 
 /***/ },
 /* 179 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var FirstScreen = function (_Component) {
-		_inherits(FirstScreen, _Component);
-
-		function FirstScreen(props) {
-			_classCallCheck(this, FirstScreen);
-
-			var _this = _possibleConstructorReturn(this, (FirstScreen.__proto__ || Object.getPrototypeOf(FirstScreen)).call(this, props));
-
-			_this.state = {};
-			return _this;
-		}
-
-		_createClass(FirstScreen, [{
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					{ id: "first" },
-					_react2.default.createElement("input", { type: "text", className: "country" }),
-					_react2.default.createElement("input", { type: "text", className: "mission" }),
-					_react2.default.createElement(
-						"div",
-						{ id: "div_select", className: "people_count" },
-						_react2.default.createElement("input", { id: "continue", type: "submit", value: "\u043F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C" })
-					)
-				);
-			}
-		}]);
-
-		return FirstScreen;
-	}(_react.Component);
-
-	exports.default = FirstScreen;
-
-/***/ },
-/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21643,23 +21576,29 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _tabs = __webpack_require__(181);
+	var _tabs = __webpack_require__(180);
 
 	var _tabs2 = _interopRequireDefault(_tabs);
 
-	var _photoGen = __webpack_require__(182);
+	var _photoGen = __webpack_require__(181);
 
 	var _photoGen2 = _interopRequireDefault(_photoGen);
 
-	var _qaGen = __webpack_require__(184);
+	var _qaGen = __webpack_require__(183);
 
 	var _qaGen2 = _interopRequireDefault(_qaGen);
 
-	var _get_data = __webpack_require__(188);
+	var _get_data = __webpack_require__(187);
 
 	var _get_data2 = _interopRequireDefault(_get_data);
 
+	var _nav_bar = __webpack_require__(197);
+
+	var _nav_bar2 = _interopRequireDefault(_nav_bar);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -21667,27 +21606,45 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var SecondScreen = function (_Component) {
-		_inherits(SecondScreen, _Component);
+	var MainScreen = function (_Component) {
+		_inherits(MainScreen, _Component);
 
-		function SecondScreen(props) {
-			_classCallCheck(this, SecondScreen);
+		function MainScreen(props) {
+			_classCallCheck(this, MainScreen);
 
-			var _this = _possibleConstructorReturn(this, (SecondScreen.__proto__ || Object.getPrototypeOf(SecondScreen)).call(this, props));
+			var _this = _possibleConstructorReturn(this, (MainScreen.__proto__ || Object.getPrototypeOf(MainScreen)).call(this, props));
 
 			_this.state = {
 				workingWithData: new _get_data2.default(),
 				tabs: _tabs2.default,
-				focused: 0
+				members_count: [],
+				focused: 0,
+				memFocused: 0
 			};
 			return _this;
 		}
 
-		_createClass(SecondScreen, [{
+		_createClass(MainScreen, [{
 			key: 'clicked',
 			value: function clicked(index) {
 				this.setState({
 					focused: index
+				});
+			}
+		}, {
+			key: 'memClicked',
+			value: function memClicked(index) {
+				this.setState({
+					memFocused: index
+				});
+			}
+		}, {
+			key: 'memberAddClick',
+			value: function memberAddClick() {
+				var memArr = this.state.members_count;
+				memArr.push({});
+				this.setState({
+					members_count: memArr
 				});
 			}
 		}, {
@@ -21699,58 +21656,149 @@
 					_this2.state.workingWithData.getData();
 				};
 				var tabs = this.state.tabs;
+				var memArr = this.state.members_count;
 				var focusedIndex = this.state.focused;
+				var memFocusedIndex = this.state.memFocused;
 				var self = this;
 				return _react2.default.createElement(
 					'div',
-					{ id: 'second-screen' },
+					{ id: 'second-screen', className: 'content' },
 					_react2.default.createElement(
-						'div',
-						null,
+						'aside',
+						{ className: 'aside-left' },
 						_react2.default.createElement(
 							'ul',
-							{ className: 'tabs' },
-							tabs.map(function (item, i) {
+							{ className: 'ages_tabs' },
+							memArr.map(function (item, i) {
 								var style = "";
-								if (focusedIndex == i) style = 'focused';
+								if (memFocusedIndex == i) style = "active";
 								return _react2.default.createElement(
 									'li',
-									{ key: i, onClick: self.clicked.bind(self, i), className: style },
+									{ key: i, className: style },
+									_react2.default.createElement(
+										'a',
+										{ onClick: self.memClicked.bind(self, i),
+											role: 'tab',
+											'data-toggle': 'tab' },
+										_react2.default.createElement('img', { src: 'static/img/user.png', alt: '' })
+									)
+								);
+							})
+						),
+						_react2.default.createElement('input', { type: 'submit', className: 'add_member', value: '+', onClick: this.memberAddClick.bind(self) })
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'content-top' },
+						_react2.default.createElement(
+							'div',
+							_defineProperty({ className: 'type_tabs' }, 'className', 'btn-group btn-group-justified btn-group-raised'),
+							tabs.map(function (item, i) {
+								var style = "";
+								if (focusedIndex == i) style = 'active';
+								return _react2.default.createElement(
+									'a',
+									{ key: i, onClick: self.clicked.bind(self, i), className: 'btn1 btn ' + style },
 									item.tab
 								);
 							})
 						)
 					),
-					_react2.default.createElement(_photoGen2.default, { tabIndex: this.state.focused, WorkData: this.state.workingWithData }),
-					_react2.default.createElement(_qaGen2.default, { tabIndex: this.state.focused }),
 					_react2.default.createElement(
 						'div',
-						{ id: 'customer-data' },
+						{ className: 'content-bottom' },
+						_react2.default.createElement(_photoGen2.default, { tabIndex: this.state.focused, WorkData: this.state.workingWithData }),
+						_react2.default.createElement(_qaGen2.default, { tabIndex: this.state.focused })
+					),
+					_react2.default.createElement(
+						'aside',
+						{ className: 'aside-right' },
 						_react2.default.createElement(
-							'label',
-							{ htmlFor: 'number' },
-							'\u041D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430'
+							'div',
+							{ className: 'all-progress' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'c100 p75 small orange' },
+								_react2.default.createElement(
+									'span',
+									null,
+									'75%'
+								),
+								_react2.default.createElement(
+									'div',
+									{ className: 'slice' },
+									_react2.default.createElement('div', { className: 'bar' }),
+									_react2.default.createElement('div', { className: 'fill' })
+								)
+							)
 						),
-						_react2.default.createElement('input', { type: 'text', id: 'number', className: 'number', name: '\u041D\u043E\u043C\u0435\u0440\u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430' }),
 						_react2.default.createElement(
-							'label',
-							{ htmlFor: 'email' },
-							'\u0410\u0434\u0440\u0435\u0441 \u044D\u043B\u0435\u043A\u0442\u0440\u043E\u043D\u043D\u043E\u0439 \u043F\u043E\u0447\u0442\u044B'
-						),
-						_react2.default.createElement('input', { type: 'text', id: 'email', className: 'number', name: 'email' }),
-						_react2.default.createElement('input', { type: 'submit', onClick: handler, value: '\u041E\u043F\u043B\u0430\u0442\u0438\u0442\u044C' })
+							'div',
+							{ id: 'customer-data', className: 'question-form_two col-xs-12' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'form-group is-empty' },
+								_react2.default.createElement(
+									'fieldset',
+									null,
+									_react2.default.createElement(
+										'label',
+										{ htmlFor: 'inputTel', className: 'col-xs-12 control-label' },
+										'\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430'
+									),
+									_react2.default.createElement(
+										'div',
+										{ className: 'col-xs-12' },
+										_react2.default.createElement('input', { type: 'tel', className: 'form-control', id: 'number', placeholder: '+7', name: '\u041D\u043E\u043C\u0435\u0440\u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430' })
+									)
+								)
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'form-group form-group_email is-empty' },
+								_react2.default.createElement(
+									'fieldset',
+									null,
+									_react2.default.createElement(
+										'label',
+										{ htmlFor: 'inputEmail', className: 'col-xs-12 control-label' },
+										'\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0430\u0434\u0440\u0435\u0441 \u044D\u043B\u0435\u043A\u0442\u0440\u043E\u043D\u043D\u043E\u0439 \u043F\u043E\u0447\u0442\u044B'
+									),
+									_react2.default.createElement(
+										'div',
+										{ className: 'col-xs-12 customer-data' },
+										_react2.default.createElement('input', { type: 'email', className: 'form-control', id: 'email', placeholder: 'Email', name: 'email' })
+									)
+								)
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'form-price' },
+								_react2.default.createElement(
+									'a',
+									{ onClick: handler, className: 'btn btn-raised btn-success' },
+									'\u041E\u043F\u043B\u0430\u0442\u0438\u0442\u044C',
+									_react2.default.createElement(
+										'span',
+										null,
+										'1499',
+										_react2.default.createElement('i', { className: 'fa fa-rub', 'aria-hidden': 'true' })
+									)
+								)
+							)
+						)
 					)
 				);
 			}
 		}]);
 
-		return SecondScreen;
+		return MainScreen;
 	}(_react.Component);
 
-	exports.default = SecondScreen;
+	exports.default = MainScreen;
 
 /***/ },
-/* 181 */
+/* 180 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -21762,7 +21810,6 @@
 				3
 			],
 			"questions": [
-				0,
 				2,
 				4
 			]
@@ -21814,7 +21861,7 @@
 	];
 
 /***/ },
-/* 182 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21829,11 +21876,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _tabs = __webpack_require__(181);
+	var _tabs = __webpack_require__(180);
 
 	var _tabs2 = _interopRequireDefault(_tabs);
 
-	var _docs = __webpack_require__(183);
+	var _docs = __webpack_require__(182);
 
 	var _docs2 = _interopRequireDefault(_docs);
 
@@ -21872,12 +21919,39 @@
 					_this2.state.workingWithData.getPhotos(e.target);
 				};
 				return _react2.default.createElement(
-					'form',
-					{ id: 'uploadForm',
-						enctype: 'multipart/form-data',
-						action: '/drive',
-						method: 'post' },
-					_react2.default.createElement('input', { type: 'file', name: 'userPhoto' })
+					'div',
+					{ className: 'foto-form nano right' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'nano-content' },
+						_react2.default.createElement(
+							'form',
+							{ id: 'photo-form', action: '/drive', encType: 'multipart/form-data', method: 'post' },
+							tabs[this.props.tabIndex].docs.map(function (item, i) {
+								for (var j = 0, len = docs.length; j < len; j++) {
+									if (item == docs[j].id) return _react2.default.createElement(
+										'div',
+										{ key: i, className: 'foto-form_block loaded' },
+										_react2.default.createElement('input', { id: docs[j].text, type: 'file', className: 'photo_upload zagruzit-foto right', name: 'file', onChange: handler }),
+										_react2.default.createElement('i', { className: 'fa fa-times fa-2x', 'aria-hidden': 'true' }),
+										_react2.default.createElement(
+											'div',
+											{ className: 'foto-form_icon' },
+											_react2.default.createElement('img', { src: docs[j].img, alt: '' }),
+											_react2.default.createElement(
+												'p',
+												null,
+												docs[j].text
+											)
+										)
+									);
+									/*<label key={i}>{docs[j].text}
+	        												<input id={docs[j].text} type="file" className="photo_upload" name="file" onChange={handler}/>
+	        												   </label>*/
+								}
+							})
+						)
+					)
 				);
 			}
 		}]);
@@ -21888,39 +21962,39 @@
 	exports.default = PhotoGenerator;
 
 /***/ },
-/* 183 */
+/* 182 */
 /***/ function(module, exports) {
 
 	module.exports = [
 		{
 			"id": 0,
-			"img": "./../../static/img/zagran.jpg",
+			"img": "./../../static/img/pass.png",
 			"text": "загранпаспорт"
 		},
 		{
 			"id": 1,
-			"img": "./../../static/img/zagran1.JPG",
+			"img": "./../../static/img/user.png",
 			"text": "фотография"
 		},
 		{
 			"id": 2,
-			"img": "./../../static/img/zagran.jpg",
+			"img": "./../../static/img/flight.png",
 			"text": "авиабилеты"
 		},
 		{
 			"id": 3,
-			"img": "./../../static/img/zagran.jpg",
+			"img": "./../../static/img/hotel.png",
 			"text": "броньотеля"
 		},
 		{
 			"id": 4,
-			"img": "./../../static/img/zagran.jpg",
-			"text": "загранпаспорт"
+			"img": "./../../static/img/Passport.png",
+			"text": "пасcпорт"
 		}
 	];
 
 /***/ },
-/* 184 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21935,15 +22009,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(185);
+	var _jquery = __webpack_require__(184);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _tabs = __webpack_require__(181);
+	var _tabs = __webpack_require__(180);
 
 	var _tabs2 = _interopRequireDefault(_tabs);
 
-	var _questions = __webpack_require__(187);
+	var _questions = __webpack_require__(186);
 
 	var _questions2 = _interopRequireDefault(_questions);
 
@@ -22005,30 +22079,54 @@
 					if (question.form) {
 						return question.form.map(function (q) {
 							return _react2.default.createElement(
-								'p',
-								{ key: i, className: 'input' + i },
-								question.text,
-								_react2.default.createElement('input', { className: 'need', type: 'text', placeholder: q.placeholder })
+								'div',
+								{ key: i, className: 'togglebutton' },
+								_react2.default.createElement(
+									'fieldset',
+									null,
+									_react2.default.createElement(
+										'label',
+										{ htmlFor: 'inputAddress', className: 'col-xs-12 control-label' },
+										question.text
+									),
+									_react2.default.createElement(
+										'div',
+										{ className: 'col-xs-10' },
+										_react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'inputAddress', placeholder: q.placeholder })
+									)
+								)
 							);
 						});
 					} else {
 						return _react2.default.createElement(
 							'div',
-							{ key: i, className: 'questions' + i },
-							question.text,
-							_react2.default.createElement('input', { id: item + 'answer', className: 'need', type: 'radio', name: item + 'answer', value: 'on', onClick: Handler }),
-							'\u0414\u0430',
-							_react2.default.createElement('input', { id: item + 'answer', className: 'need', type: 'radio', name: item + 'answer', value: 'off', onClick: Handler }),
-							'\u041D\u0435\u0442',
+							{ key: i, className: 'togglebutton' },
+							_react2.default.createElement(
+								'label',
+								null,
+								question.text
+							),
 							_react2.default.createElement(
 								'div',
-								{ id: 'field' + i },
-								_this2.state.addField && findItem(item)
+								{ className: 'onoffswitch enable' },
+								_react2.default.createElement('input', { type: 'checkbox', name: 'onoffswitch', className: 'onoffswitch-checkbox', id: "myonoffswitch" + i, checked: '' }),
+								_react2.default.createElement(
+									'label',
+									{ className: 'onoffswitch-label', htmlFor: "myonoffswitch" + i, 'data-toggle': 'collapse', 'data-target': '#address', 'aria-expanded': 'true' },
+									_react2.default.createElement('span', { className: 'onoffswitch-inner' }),
+									_react2.default.createElement('span', { className: 'onoffswitch-switch' })
+								)
 							)
 						);
 					}
 				});
 			}
+			/*<input id={item + 'answer'} className="need" type="radio" name={ item + 'answer'} value="on" onClick={Handler} />Да
+	  							<input id={item + 'answer'} className="need" type="radio" name={ item + 'answer'} value="off" onClick={Handler} />Нет
+	  							<div id={'field' + i}>
+	  								{this.state.addField && findItem(item)}
+	  							</div>*/
+
 		}, {
 			key: 'AnswerHandler',
 			value: function AnswerHandler(answer, id, event) {
@@ -22071,47 +22169,13 @@
 						})
 					});
 				}
-
-				// if(questions[id].answer) {
-				// 	if(answer == true) {
-				// 		if(questions[id].answer[0].yes == null) {
-				// 			this.setState({
-				// 				addField: null
-				// 			});
-				// 			return false;
-				// 		}
-				// 		if(questions[id].answer[0].yes.text) {
-				// 			questions[id].answer[0].yes.form.map((item, i) => {
-				// 				for(let c = 0, len = questions[id].answer[0].yes.form.length; c < len; c++)
-				// 					field.push(<p key={i} className={'input' + i}>{questions[id].answer[0].yes.text}
-				// 								<input type="text" placeholder={questions[id].answer[0].yes.form[c].placeholder} />
-				// 							</p>);
-				// 				})
-				// 			}
-				// 	} else {
-				// 		if(questions[id].answer[1].no == null) {
-				// 			return false;
-				// 		}
-				// 		if(questions[id].answer[1].no.text) {
-				// 			questions[id].answer[1].no.form.map((item, i) => {
-				// 				console.log(item);
-				// 					field.push(<p key={i} className={'input' + i}>{questions[id].answer[1].no.text}
-				// 								<input type="text" placeholder={questions[id].answer[1].no.form[i].placeholder} />
-				// 							  </p>);
-				// 				})
-				// 			}
-				// 		}
-				// }
-				// this.setState({
-				// 	addField: field
-				// });
 			}
 		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
 					'div',
-					{ id: 'question-form' },
+					{ id: 'question-form', className: 'question-form left' },
 					this.QuestionsRender(this.props.tabIndex)
 				);
 			}
@@ -22123,7 +22187,7 @@
 	exports.default = QandAGenerator;
 
 /***/ },
-/* 185 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {"use strict";
@@ -31920,10 +31984,10 @@
 
 		return jQuery;
 	});
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(186)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(185)(module)))
 
 /***/ },
-/* 186 */
+/* 185 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -31940,7 +32004,7 @@
 	};
 
 /***/ },
-/* 187 */
+/* 186 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -32059,7 +32123,7 @@
 	];
 
 /***/ },
-/* 188 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32070,11 +32134,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _superagent = __webpack_require__(189);
+	var _superagent = __webpack_require__(188);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _formData = __webpack_require__(198);
+	var _formData = __webpack_require__(195);
 
 	var _formData2 = _interopRequireDefault(_formData);
 
@@ -32082,7 +32146,7 @@
 
 	var _path2 = _interopRequireDefault(_path);
 
-	var _questions = __webpack_require__(187);
+	var _questions = __webpack_require__(186);
 
 	var _questions2 = _interopRequireDefault(_questions);
 
@@ -32100,8 +32164,11 @@
 		_createClass(WorkData, [{
 			key: 'getPhotos',
 			value: function getPhotos(e) {
-				console.log(JSON.stringify(e.files));
-				_superagent2.default.post('/drive').set('Content-Type', 'application/json').send(JSON.stringify(e.files)).end(function (err, res) {
+				console.log(e.files);
+				var data = new _formData2.default();
+				data.append('file', e.files[0], e.id + '.jpg');
+				console.log(data);
+				_superagent2.default.post('/drive').send(data).end(function (err, res) {
 					if (err) console.log(err);
 					console.log(res);
 				});
@@ -32120,13 +32187,12 @@
 						if (qInputs[i].checked == true) data[_questions2.default[parseInt(qInputs[i].name, 10)].text] = qInputs[i].value;
 					}
 				}
-				for (var _i = 0, _len = custInput.length; _i < _len; _i++) {
-					if (custInput[_i].type == "text") {
-						data.important = [];
-						data.important.push(custInput[0].name, custInput[0].value);
-						data.important.push(custInput[1].name, custInput[1].value);
-					}
-				}console.log(data);
+				if (custInput) {
+					data.important = [];
+					data.important.push(custInput[0].name, custInput[0].value);
+					data.important.push(custInput[1].name, custInput[1].value);
+				}
+				console.log(data);
 				this.dataUpload(data);
 			}
 		}, {
@@ -32148,7 +32214,7 @@
 	exports.default = WorkData;
 
 /***/ },
-/* 189 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32172,11 +32238,11 @@
 	  root = undefined;
 	}
 
-	var Emitter = __webpack_require__(190);
-	var RequestBase = __webpack_require__(191);
-	var isObject = __webpack_require__(192);
-	var isFunction = __webpack_require__(193);
-	var ResponseBase = __webpack_require__(194);
+	var Emitter = __webpack_require__(189);
+	var RequestBase = __webpack_require__(190);
+	var isObject = __webpack_require__(191);
+	var isFunction = __webpack_require__(192);
+	var ResponseBase = __webpack_require__(193);
 
 	/**
 	 * Noop.
@@ -33069,7 +33135,7 @@
 	};
 
 /***/ },
-/* 190 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33233,7 +33299,7 @@
 	};
 
 /***/ },
-/* 191 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33243,7 +33309,7 @@
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(192);
+	var isObject = __webpack_require__(191);
 
 	/**
 	 * Expose `RequestBase`.
@@ -33771,7 +33837,7 @@
 	};
 
 /***/ },
-/* 192 */
+/* 191 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -33793,7 +33859,7 @@
 	module.exports = isObject;
 
 /***/ },
-/* 193 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33805,7 +33871,7 @@
 	 * @return {Boolean}
 	 * @api private
 	 */
-	var isObject = __webpack_require__(192);
+	var isObject = __webpack_require__(191);
 
 	function isFunction(fn) {
 	  var tag = isObject(fn) ? Object.prototype.toString.call(fn) : '';
@@ -33815,7 +33881,7 @@
 	module.exports = isFunction;
 
 /***/ },
-/* 194 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33824,7 +33890,7 @@
 	 * Module dependencies.
 	 */
 
-	var utils = __webpack_require__(195);
+	var utils = __webpack_require__(194);
 
 	/**
 	 * Expose `ResponseBase`.
@@ -33952,7 +34018,7 @@
 	};
 
 /***/ },
-/* 195 */
+/* 194 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -34024,6 +34090,17 @@
 	  }
 	  return header;
 	};
+
+/***/ },
+/* 195 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	/* eslint-env browser */
+	module.exports = (typeof self === 'undefined' ? 'undefined' : _typeof(self)) == 'object' ? self.FormData : window.FormData;
 
 /***/ },
 /* 196 */
@@ -34253,16 +34330,159 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 197 */,
-/* 198 */
-/***/ function(module, exports) {
+/* 197 */
+/***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
 
-	/* eslint-env browser */
-	module.exports = (typeof self === 'undefined' ? 'undefined' : _typeof(self)) == 'object' ? self.FormData : window.FormData;
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Nav = function (_Component) {
+		_inherits(Nav, _Component);
+
+		function Nav(props) {
+			_classCallCheck(this, Nav);
+
+			var _this = _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).call(this, props));
+
+			_this.state = {};
+			return _this;
+		}
+
+		_createClass(Nav, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"nav",
+					{ className: "" },
+					_react2.default.createElement(
+						"div",
+						{ className: "nav-top" },
+						_react2.default.createElement(
+							"div",
+							{ className: "logo" },
+							_react2.default.createElement("img", { src: "static/img/logo.png", alt: "" })
+						)
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "nav-bottom" },
+						_react2.default.createElement(
+							"div",
+							{ className: "tab-content" },
+							_react2.default.createElement(
+								"div",
+								{ className: "tab-pane active", id: "user0" },
+								_react2.default.createElement(
+									"div",
+									{ className: "left user" },
+									_react2.default.createElement("img", { src: "static/img/user.png", alt: "" }),
+									_react2.default.createElement(
+										"p",
+										null,
+										"\u0412\u0437\u0440\u043E\u0441\u043B\u044B\u0439"
+									)
+								),
+								_react2.default.createElement(
+									"div",
+									{ className: "c100 p100 small green right" },
+									_react2.default.createElement(
+										"span",
+										null,
+										"100%"
+									),
+									_react2.default.createElement(
+										"div",
+										{ className: "slice" },
+										_react2.default.createElement("div", { className: "bar" }),
+										_react2.default.createElement("div", { className: "fill" })
+									)
+								)
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "tab-pane fade", id: "user1" },
+								_react2.default.createElement(
+									"div",
+									{ className: "left user" },
+									_react2.default.createElement("img", { src: "static/img/user.png", alt: "" }),
+									_react2.default.createElement(
+										"p",
+										null,
+										"\u041E\u0442 6 \u0434\u043E 18 \u043B\u0435\u0442"
+									)
+								),
+								_react2.default.createElement(
+									"div",
+									{ className: "c100 p50 small orange right" },
+									_react2.default.createElement(
+										"span",
+										null,
+										"50%"
+									),
+									_react2.default.createElement(
+										"div",
+										{ className: "slice" },
+										_react2.default.createElement("div", { className: "bar" }),
+										_react2.default.createElement("div", { className: "fill" })
+									)
+								)
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "tab-pane fade", id: "user2" },
+								_react2.default.createElement(
+									"div",
+									{ className: "left user" },
+									_react2.default.createElement("img", { src: "static/img/user.png", alt: "" }),
+									_react2.default.createElement(
+										"p",
+										null,
+										"\u041E\u0442 0 \u0434\u043E 6 \u043B\u0435\u0442"
+									)
+								),
+								_react2.default.createElement(
+									"div",
+									{ className: "c100 p50 small orange right" },
+									_react2.default.createElement(
+										"span",
+										null,
+										"50%"
+									),
+									_react2.default.createElement(
+										"div",
+										{ className: "slice" },
+										_react2.default.createElement("div", { className: "bar" }),
+										_react2.default.createElement("div", { className: "fill" })
+									)
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+
+		return Nav;
+	}(_react.Component);
+
+	exports.default = Nav;
 
 /***/ }
 /******/ ]);

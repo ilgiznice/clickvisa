@@ -1,10 +1,9 @@
 import express from 'express';
 import path from 'path';
 import fs from 'fs';
-import mkdirp from 'mkdirp';
 import google from 'googleapis';
 import googleAuth from 'google-auth-library';
-import authorize from './auth.js';
+import authorize from './auth';
 import multer from 'multer';
 import bodyParser from 'body-parser';
 
@@ -14,42 +13,36 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({
 	extended: false
 }));
-let storage =   multer.diskStorage({
-  destination: function (req, file, callback) {
-      callback(null, './uploads');
+let storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+	  cb(null, './my-uploads')
     },
-  filename: function (req, file, callback) {
-      callback(null, file.fieldname + '-' + Date.now());
-    }
-});
-let upload = multer({storage : storage}).array('userPhoto', 2);
+  filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now())
+    } 
+})
 
-router.route('/drive').post((req, res, next) => {
+router.route('/drive').post((req, res) => {
+	
 	let data = req.body;
 	let folderId;
 	let service = google.drive('v3');
 
 	if(!data.important) {
-		upload(req, res, (err) => {
-			console.log(req.body);
-			console.log(req.files);
-			//if(err) console.log(err)
-			res.end('yeaaah');
-		});
-			/*fs.readFile(req.body.photos[0], (err, data) => {
-			let newPath = __dirname + '/static/localfiles/file.jpg';
-			fs.writeFile(newPath, data, (err) => {
-				console.log(err);
-			})
-			console.log(err);
-		});*/
+		console.log(data.name);
+		console.log(req.files);
 	} else {
+		console.log(data);
 		fs.readFile(path.join(__dirname, './../../static/client_secret.json'), function processClientSecrets(err, content) {
-		  if (err) {
-			console.log('Error loading client secret file: ' + err);
-			return;
-		  }
-		  res.send(authorize(JSON.parse(content), createFolder));
+			if (err) {
+				console.log('Error loading client secret file: ' + err);
+				return;
+			}
+			fs.writeFile('./static/localfiles/данные_о_пользователе.json', JSON.stringify(data), (err1) => {
+				if(err1) return console.log(err1);
+				console.log('done!');
+				res.send(authorize(JSON.parse(content), createFolder));
+			});
 		});
 	}
 	
@@ -75,29 +68,36 @@ router.route('/drive').post((req, res, next) => {
 	}
 
 	let addFiles = (auth) => {
-		var fileMetadata = {
-			'name': 'photo.jpg',
-			 parents: [ folderId ]
-		};
-		var media = {
-			mimeType: 'image/jpeg',
-			body: fs.createReadStream(__dirname + '/1.jpg')
-		};
+		let filesList = [];
+		let mimeType = 'image/jpeg';
+		fs.readdir('./static/localfiles', (err, files) => {
+			files.forEach((file, i) => {
+				console.log(file.split('.'));
+				console.log(i);
+				
+				var fileMetadata = {
+					'name': file,
+					 parents: [ folderId ]
+				};
+				var media = {
+					body: fs.createReadStream('./static/localfiles/' + file)
+				};
 
-		service.files.create({
-		   auth: auth,
-		   resource: fileMetadata,
-		   media: media,
-		   fields: 'id'
-		}, function(err, file) {
-			if(err) {
-				console.log(err);	
-			} else {
-				console.log('File Id: ', file.id);
-			}
+				service.files.create({
+				   auth: auth,
+				   resource: fileMetadata,
+				   media: media,
+				   fields: 'id'
+				}, function(err, file) {
+					if(err) {
+						console.log(err);	
+					} else {
+						console.log('File Id: ', file.id);
+					}
+				});
+			});
 		});
 	}
-
 });
 
 module.exports = router;

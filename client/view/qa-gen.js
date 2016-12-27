@@ -40,24 +40,37 @@ export default class QandAGenerator extends Component {
 				else question = question[0];
 				if(question.form) {
 					return question.form.map(q => (
-						<p key={i} className={'input' + i}>{question.text}
-							<input className="need" type="text" placeholder={q.placeholder} />
-						</p>
+						<div key={i} className="togglebutton">
+							<fieldset>
+								<label htmlFor="inputAddress" className="col-xs-12 control-label">{question.text}</label>
+								<div className="col-xs-10">
+									<input type="text" className="form-control" id="inputAddress" placeholder={q.placeholder} />
+								</div>
+							</fieldset>
+						</div>
 					));
 				} else {
 					return (
-						<div key={i} className={'questions' + i}>{question.text}
-							<input id={item + 'answer'} className="need" type="radio" name={ item + 'answer'} value="on" onClick={Handler} />Да
-							<input id={item + 'answer'} className="need" type="radio" name={ item + 'answer'} value="off" onClick={Handler} />Нет
-							<div id={'field' + i}>
-								{this.state.addField && findItem(item)}
-							</div>
+						<div key={i} className="togglebutton">
+							<label>{question.text}</label>
+								<div className="onoffswitch enable">
+								    <input type="checkbox" name="onoffswitch" className="onoffswitch-checkbox" id={"myonoffswitch" + i} checked="" />
+								    <label className="onoffswitch-label" htmlFor={"myonoffswitch" + i} data-toggle="collapse" data-target="#address" aria-expanded="true">
+								        <span className="onoffswitch-inner"></span>
+								        <span className="onoffswitch-switch"></span>
+								    </label>
+								</div>
 						</div>
 					);
 				}
 			})
 		);
 	}
+/*<input id={item + 'answer'} className="need" type="radio" name={ item + 'answer'} value="on" onClick={Handler} />Да
+							<input id={item + 'answer'} className="need" type="radio" name={ item + 'answer'} value="off" onClick={Handler} />Нет
+							<div id={'field' + i}>
+								{this.state.addField && findItem(item)}
+							</div>*/
 
 	AnswerHandler(answer, id, event) {
 		let questions = this.state.questions,
@@ -93,45 +106,11 @@ export default class QandAGenerator extends Component {
 				addField: this.state.addField.filter(f => f.id !== field.id),
 			});
 		}
-
-		// if(questions[id].answer) {
-		// 	if(answer == true) {
-		// 		if(questions[id].answer[0].yes == null) {
-		// 			this.setState({
-		// 				addField: null
-		// 			});
-		// 			return false;
-		// 		}
-		// 		if(questions[id].answer[0].yes.text) {
-		// 			questions[id].answer[0].yes.form.map((item, i) => {
-		// 				for(let c = 0, len = questions[id].answer[0].yes.form.length; c < len; c++)
-		// 					field.push(<p key={i} className={'input' + i}>{questions[id].answer[0].yes.text}
-		// 								<input type="text" placeholder={questions[id].answer[0].yes.form[c].placeholder} />
-		// 							</p>);
-		// 				})
-		// 			}
-		// 	} else {
-		// 		if(questions[id].answer[1].no == null) {
-		// 			return false;
-		// 		}
-		// 		if(questions[id].answer[1].no.text) {
-		// 			questions[id].answer[1].no.form.map((item, i) => {
-		// 				console.log(item);
-		// 					field.push(<p key={i} className={'input' + i}>{questions[id].answer[1].no.text}
-		// 								<input type="text" placeholder={questions[id].answer[1].no.form[i].placeholder} />
-		// 							  </p>);
-		// 				})
-		// 			}
-		// 		}
-		// }
-		// this.setState({
-		// 	addField: field
-		// });
 	}
 
 	render() {
 		return(
-			<div id = "question-form">
+			<div id = "question-form" className="question-form left">
 				{this.QuestionsRender(this.props.tabIndex)}
 			</div>
 		);

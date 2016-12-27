@@ -1,27 +1,27 @@
 [
 	{
 		"id": 0,
-		"img":"./../../static/img/zagran.jpg",	
+		"img":"./../../static/img/pass.png",	
 		"text":"загранпаспорт"
 	},		
 	{
 		"id": 1,
-		"img":"./../../static/img/zagran1.JPG",
+		"img":"./../../static/img/user.png",
 		"text":"фотография"
 	},
 	{
 		"id": 2,
-		"img":"./../../static/img/zagran.jpg",
+		"img":"./../../static/img/flight.png",
 		"text":"авиабилеты"
 	},
 	{
 		"id": 3,
-		"img":"./../../static/img/zagran.jpg",
+		"img":"./../../static/img/hotel.png",
 		"text":"броньотеля"
 	},
 	{
 		"id": 4,
-		"img":"./../../static/img/zagran.jpg",
-		"text":"загранпаспорт"
+		"img":"./../../static/img/Passport.png",
+		"text":"пасcпорт"
 	}
 ]

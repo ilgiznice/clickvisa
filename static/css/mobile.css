@@ -1,0 +1,29 @@
+body{
+	height: 1000px;
+}
+.container-fluid{
+	padding: 0;
+}
+nav{
+	position: fixed;
+	left: 0;
+	right: 0;
+}
+.nav-top{
+	background: #000;
+}
+.logo img{
+	max-width: 150px;
+	padding: 10px;
+}
+.content-top{
+/*	min-width: 800px;
+	width: 100%;
+	margin-top: 100px;*/
+	height: 50px;
+	width: 800px;
+}
+.content-top .btn{
+	padding-left: 0;
+	padding-right: 0;
+}

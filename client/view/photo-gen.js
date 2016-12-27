@@ -20,22 +20,30 @@ export default class PhotoGenerator extends Component {
 			this.state.workingWithData.getPhotos(e.target);
 		}
 		return (
-			<form id="uploadForm"
-			          enctype="multipart/form-data"
-			          action="/drive"
-			          method="post">
-					{
-						/*tabs[this.props.tabIndex].docs.map((item, i) => {
-							for(let j = 0, len = docs.length; j < len; j++) {
-								if(item == docs[j].id)
-									return <label key={i}>{docs[j].text}
-										<input id={docs[j].text} type="file" className="photo_upload" name={docs[j].text} onChange={handler}/>
-										   </label>
+			<div className="foto-form nano right">
+				<div className="nano-content">
+					<form id="photo-form" action="/drive" encType="multipart/form-data" method="post">
+							{
+								tabs[this.props.tabIndex].docs.map((item, i) => {
+									for(let j = 0, len = docs.length; j < len; j++) {
+										if(item == docs[j].id)
+											return <div key={i} className="foto-form_block loaded">
+												<input id={docs[j].text} type="file" className="photo_upload zagruzit-foto right" name="file" onChange={handler}/>
+														<i className="fa fa-times fa-2x" aria-hidden="true"></i>
+													<div className="foto-form_icon">
+														<img src={docs[j].img} alt="" />
+														<p>{docs[j].text}</p>
+													</div>
+												</div>
+/*<label key={i}>{docs[j].text}
+												<input id={docs[j].text} type="file" className="photo_upload" name="file" onChange={handler}/>
+												   </label>*/
+									}
+								})
 							}
-						})*/
-					}
-					<input type="file" name="userPhoto" />
-				</form> 
+						</form> 
+				</div>
+			</div>
 		);
 	}
 }

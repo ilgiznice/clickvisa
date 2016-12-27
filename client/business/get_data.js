@@ -9,10 +9,12 @@ export default class WorkData {
 	}
 
 	getPhotos(e) {
-		console.log(JSON.stringify(e.files));
+		console.log(e.files);
+		let data = new FormData();
+		data.append('file', e.files[0], e.id + '.jpg')
+		console.log(data);
 		request.post('/drive')
-			.set('Content-Type', 'application/json')
-			.send(JSON.stringify(e.files))
+			.send(data)
 			.end((err, res) => {
 				if(err)	console.log(err);
 				console.log(res);
@@ -32,13 +34,11 @@ export default class WorkData {
 					data[questions[parseInt(qInputs[i].name, 10)].text] = qInputs[i].value;
 			}
 		}
-		for(let i = 0, len = custInput.length; i < len; i++)
-			if(custInput[i].type == "text") {
-				data.important = [];
-				data.important.push(custInput[0].name, custInput[0].value);
-				data.important.push(custInput[1].name, custInput[1].value);
-			}
-		
+		if(custInput) {
+			data.important = [];
+			data.important.push(custInput[0].name, custInput[0].value);
+			data.important.push(custInput[1].name, custInput[1].value);
+		}
 		console.log(data);
 		this.dataUpload(data);
 	}
