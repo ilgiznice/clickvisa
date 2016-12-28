@@ -18,6 +18,7 @@
 	},
 	{
 		"id":1,
+		"default": true,
 		"text":"Проживаете ли по прописке?",
 		"answer": {
 			"yes": null,

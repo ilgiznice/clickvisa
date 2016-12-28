@@ -4,11 +4,13 @@ import multer from 'multer';
 
 const app = express();
 let storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-	  cb(null, './static/localfiles/')
+	destination: function (req, file, cb) {
+		console.log(file);
+		cb(null, './static/localfiles/')
     },
-  filename: function (req, file, cb) {
-      cb(null, file.originalname);
+	filename: function (req, file, cb) {
+		console.log(file);
+		cb(null, file.originalname + '.' + file.mimetype.split('/')[1]);
     }
 })
 

@@ -7,7 +7,7 @@ module.exports = {
 		},
 	resolveLoader: { root: path.join(__dirname, 'node_modules') },
 	resolve: {
-			root: path.join(__dirname, 'server'),
+			root: path.join(__dirname, 'client'),
 			modulesDirectories: ['node_modules'],
 			extensions: ['', '.js', '.json']
 		},

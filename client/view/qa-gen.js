@@ -21,8 +21,18 @@ export default class QandAGenerator extends Component {
 
 		let Handler = (event) => {
 			event.persist();
-			const selected = (() => event.target.value === 'on' ? true : false)();
-			return this.AnswerHandler(selected, parseInt(event.target.id, 10), event);
+			let elem = event.target;
+			let selected = null;
+			
+			if(elem.parentNode.className == "onoffswitch enable") {
+				elem.parentNode.className = "onoffswitch";
+				selected = true;			
+			} else {
+			   	elem.parentNode.className = "onoffswitch enable";
+				selected = false;			
+			}
+			
+			return this.AnswerHandler(selected, parseInt(elem.id, 10), event);
 		}
 
 		const findItem = i => {
@@ -49,17 +59,36 @@ export default class QandAGenerator extends Component {
 							</fieldset>
 						</div>
 					));
-				} else {
+				} else if(question.default == true){
 					return (
 						<div key={i} className="togglebutton">
 							<label>{question.text}</label>
-								<div className="onoffswitch enable">
-								    <input type="checkbox" name="onoffswitch" className="onoffswitch-checkbox" id={"myonoffswitch" + i} checked="" />
-								    <label className="onoffswitch-label" htmlFor={"myonoffswitch" + i} data-toggle="collapse" data-target="#address" aria-expanded="true">
+								<div className="onoffswitch">
+								    <input type="checkbox" name="onoffswitch" className="onoffswitch-checkbox" id={item +  "myonoffswitch" + i} checked="" onClick={Handler}/>
+								    <label className="onoffswitch-label" htmlFor={item  + "myonoffswitch" + i} data-toggle="collapse" data-target={'#field' + i} aria-expanded="true">
 								        <span className="onoffswitch-inner"></span>
 								        <span className="onoffswitch-switch"></span>
 								    </label>
 								</div>
+							<div id={'field' + i} className="collapse" aria-expanded="true">
+								{this.state.addField && findItem(item)}
+							</div>
+						</div>
+					);
+				} else {
+					return (
+						<div key={i} className="togglebutton">
+							<label>{question.text}</label>
+								<div className="onoffswitch enable" >
+									<input type="checkbox" name="onoffswitch" className="onoffswitch-checkbox" id={item +  "myonoffswitch" + i} checked="" onClick={Handler}/>
+									<label className="onoffswitch-label" htmlFor={item  + "myonoffswitch" + i} data-toggle="collapse" data-target={'#field' + i} aria-expanded="true">
+										<span className="onoffswitch-inner"></span>
+										<span className="onoffswitch-switch"></span>
+									</label>
+								</div>
+							<div id={'field' + i} className="collapse" aria-expanded="true">
+								{this.state.addField && findItem(item)}
+							</div>
 						</div>
 					);
 				}
@@ -82,10 +111,12 @@ export default class QandAGenerator extends Component {
 				&& questions[id].answer[result].form
 				&& questions[id].answer[result].form.length) {
 				field = questions[id].answer[result].form.map((item, i) => (
-					<p key={i} className={'input' + i}>
-						{questions[id].answer[result].text}
-						<input className="need" type="text" placeholder={item.placeholder}/>
-					</p>
+						<fieldset key={i}>
+							<label htmlFor="inputAddress" className="col-xs-12 control-label">{questions[id].answer[result].text}</label>
+							<div className="col-xs-10">
+								<input type="text" className="form-control" id="inputAddress" placeholder={item.placeholder} />
+							</div>
+						</fieldset>
 				));
 			}
 		}

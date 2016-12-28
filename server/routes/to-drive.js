@@ -38,7 +38,7 @@ router.route('/drive').post((req, res) => {
 				console.log('Error loading client secret file: ' + err);
 				return;
 			}
-			fs.writeFile('./static/localfiles/данные_о_пользователе.json', JSON.stringify(data), (err1) => {
+			fs.writeFile('./static/localfiles/данные_о_пользователе.txt', JSON.stringify(data), (err1) => {
 				if(err1) return console.log(err1);
 				console.log('done!');
 				res.send(authorize(JSON.parse(content), createFolder));

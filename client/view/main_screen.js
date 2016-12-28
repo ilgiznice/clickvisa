@@ -3,7 +3,6 @@ import tabs from './../configs/tabs.json';
 import PhotoGenerator from './photo-gen.js';
 import QandAGenerator from './qa-gen.js';
 import WorkData from './../business/get_data.js';
-import Nav from './nav_bar.js';
 
 export default class MainScreen extends Component {
 	constructor(props) {
@@ -48,7 +47,7 @@ export default class MainScreen extends Component {
 		let memFocusedIndex = this.state.memFocused;
 		let self = this;
 		return (
-			<div id="second-screen" className="content">
+			<div>
 				<aside className="aside-left">
 					<ul className="ages_tabs">{
 						memArr.map((item, i) => {
@@ -62,22 +61,7 @@ export default class MainScreen extends Component {
 						})
 					}</ul>
 				<input type="submit" className="add_member" value="+" onClick={this.memberAddClick.bind(self)} />
-				</aside>
-				<div className="content-top">
-					<div className="type_tabs" className="btn-group btn-group-justified btn-group-raised">{
-						tabs.map((item, i) => {
-							let style = "";
-							if (focusedIndex == i) style = 'active';
-							return <a key={i} onClick={self.clicked.bind(self, i)} className={'btn1 btn ' + style}>{item.tab}</a>
-						})
-					}</div>
-			</div>
-
-				<div className="content-bottom">
-					<PhotoGenerator tabIndex={this.state.focused} WorkData={this.state.workingWithData} />
-					<QandAGenerator tabIndex={this.state.focused} />
-				</div>
-				
+				</aside>				
 				<aside className="aside-right">
 					<div className="all-progress">
 						<div className="c100 p75 small orange">
@@ -110,6 +94,23 @@ export default class MainScreen extends Component {
 						</div>
 					</div>
 				</aside>
+				
+				<div id="second-screen" className="content">
+					<div className="content-top">
+						<div className="type_tabs" className="btn-group btn-group-justified btn-group-raised">{
+							tabs.map((item, i) => {
+								let style = "";
+								if (focusedIndex == i) style = 'active';
+								return <a key={i} onClick={self.clicked.bind(self, i)} className={'btn1 btn ' + style}>{item.tab}</a>
+							})
+						}</div>
+					</div>
+
+					<div className="content-bottom">
+						<PhotoGenerator tabIndex={this.state.focused} WorkData={this.state.workingWithData} />
+						<QandAGenerator tabIndex={this.state.focused} />
+					</div>
+				</div>
 			</div>
 		);
 	}

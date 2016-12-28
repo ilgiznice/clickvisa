@@ -21531,6 +21531,10 @@
 
 	var _main_screen2 = _interopRequireDefault(_main_screen);
 
+	var _nav_bar = __webpack_require__(197);
+
+	var _nav_bar2 = _interopRequireDefault(_nav_bar);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21551,7 +21555,12 @@
 		_createClass(App, [{
 			key: 'render',
 			value: function render() {
-				return _react2.default.createElement(_main_screen2.default, null);
+				return _react2.default.createElement(
+					'div',
+					{ className: 'container-fluid' },
+					_react2.default.createElement(_nav_bar2.default, null),
+					_react2.default.createElement(_main_screen2.default, null)
+				);
 			}
 		}]);
 
@@ -21591,10 +21600,6 @@
 	var _get_data = __webpack_require__(187);
 
 	var _get_data2 = _interopRequireDefault(_get_data);
-
-	var _nav_bar = __webpack_require__(197);
-
-	var _nav_bar2 = _interopRequireDefault(_nav_bar);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21662,7 +21667,7 @@
 				var self = this;
 				return _react2.default.createElement(
 					'div',
-					{ id: 'second-screen', className: 'content' },
+					null,
 					_react2.default.createElement(
 						'aside',
 						{ className: 'aside-left' },
@@ -21686,29 +21691,6 @@
 							})
 						),
 						_react2.default.createElement('input', { type: 'submit', className: 'add_member', value: '+', onClick: this.memberAddClick.bind(self) })
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'content-top' },
-						_react2.default.createElement(
-							'div',
-							_defineProperty({ className: 'type_tabs' }, 'className', 'btn-group btn-group-justified btn-group-raised'),
-							tabs.map(function (item, i) {
-								var style = "";
-								if (focusedIndex == i) style = 'active';
-								return _react2.default.createElement(
-									'a',
-									{ key: i, onClick: self.clicked.bind(self, i), className: 'btn1 btn ' + style },
-									item.tab
-								);
-							})
-						)
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'content-bottom' },
-						_react2.default.createElement(_photoGen2.default, { tabIndex: this.state.focused, WorkData: this.state.workingWithData }),
-						_react2.default.createElement(_qaGen2.default, { tabIndex: this.state.focused })
 					),
 					_react2.default.createElement(
 						'aside',
@@ -21786,6 +21768,33 @@
 									)
 								)
 							)
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ id: 'second-screen', className: 'content' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'content-top' },
+							_react2.default.createElement(
+								'div',
+								_defineProperty({ className: 'type_tabs' }, 'className', 'btn-group btn-group-justified btn-group-raised'),
+								tabs.map(function (item, i) {
+									var style = "";
+									if (focusedIndex == i) style = 'active';
+									return _react2.default.createElement(
+										'a',
+										{ key: i, onClick: self.clicked.bind(self, i), className: 'btn1 btn ' + style },
+										item.tab
+									);
+								})
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'content-bottom' },
+							_react2.default.createElement(_photoGen2.default, { tabIndex: this.state.focused, WorkData: this.state.workingWithData }),
+							_react2.default.createElement(_qaGen2.default, { tabIndex: this.state.focused })
 						)
 					)
 				);
@@ -22056,10 +22065,18 @@
 
 				var Handler = function Handler(event) {
 					event.persist();
-					var selected = function () {
-						return event.target.value === 'on' ? true : false;
-					}();
-					return _this2.AnswerHandler(selected, parseInt(event.target.id, 10), event);
+					var elem = event.target;
+					var selected = null;
+
+					if (elem.parentNode.className == "onoffswitch enable") {
+						elem.parentNode.className = "onoffswitch";
+						selected = true;
+					} else {
+						elem.parentNode.className = "onoffswitch enable";
+						selected = false;
+					}
+
+					return _this2.AnswerHandler(selected, parseInt(elem.id, 10), event);
 				};
 
 				var findItem = function findItem(i) {
@@ -22097,6 +22114,32 @@
 								)
 							);
 						});
+					} else if (question.default == true) {
+						return _react2.default.createElement(
+							'div',
+							{ key: i, className: 'togglebutton' },
+							_react2.default.createElement(
+								'label',
+								null,
+								question.text
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'onoffswitch' },
+								_react2.default.createElement('input', { type: 'checkbox', name: 'onoffswitch', className: 'onoffswitch-checkbox', id: item + "myonoffswitch" + i, checked: '', onClick: Handler }),
+								_react2.default.createElement(
+									'label',
+									{ className: 'onoffswitch-label', htmlFor: item + "myonoffswitch" + i, 'data-toggle': 'collapse', 'data-target': '#field' + i, 'aria-expanded': 'true' },
+									_react2.default.createElement('span', { className: 'onoffswitch-inner' }),
+									_react2.default.createElement('span', { className: 'onoffswitch-switch' })
+								)
+							),
+							_react2.default.createElement(
+								'div',
+								{ id: 'field' + i, className: 'collapse', 'aria-expanded': 'true' },
+								_this2.state.addField && findItem(item)
+							)
+						);
 					} else {
 						return _react2.default.createElement(
 							'div',
@@ -22109,13 +22152,18 @@
 							_react2.default.createElement(
 								'div',
 								{ className: 'onoffswitch enable' },
-								_react2.default.createElement('input', { type: 'checkbox', name: 'onoffswitch', className: 'onoffswitch-checkbox', id: "myonoffswitch" + i, checked: '' }),
+								_react2.default.createElement('input', { type: 'checkbox', name: 'onoffswitch', className: 'onoffswitch-checkbox', id: item + "myonoffswitch" + i, checked: '', onClick: Handler }),
 								_react2.default.createElement(
 									'label',
-									{ className: 'onoffswitch-label', htmlFor: "myonoffswitch" + i, 'data-toggle': 'collapse', 'data-target': '#address', 'aria-expanded': 'true' },
+									{ className: 'onoffswitch-label', htmlFor: item + "myonoffswitch" + i, 'data-toggle': 'collapse', 'data-target': '#field' + i, 'aria-expanded': 'true' },
 									_react2.default.createElement('span', { className: 'onoffswitch-inner' }),
 									_react2.default.createElement('span', { className: 'onoffswitch-switch' })
 								)
+							),
+							_react2.default.createElement(
+								'div',
+								{ id: 'field' + i, className: 'collapse', 'aria-expanded': 'true' },
+								_this2.state.addField && findItem(item)
 							)
 						);
 					}
@@ -22140,10 +22188,18 @@
 					if (questions[id].answer[result].text && questions[id].answer[result].form && questions[id].answer[result].form.length) {
 						field = questions[id].answer[result].form.map(function (item, i) {
 							return _react2.default.createElement(
-								'p',
-								{ key: i, className: 'input' + i },
-								questions[id].answer[result].text,
-								_react2.default.createElement('input', { className: 'need', type: 'text', placeholder: item.placeholder })
+								'fieldset',
+								{ key: i },
+								_react2.default.createElement(
+									'label',
+									{ htmlFor: 'inputAddress', className: 'col-xs-12 control-label' },
+									questions[id].answer[result].text
+								),
+								_react2.default.createElement(
+									'div',
+									{ className: 'col-xs-10' },
+									_react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'inputAddress', placeholder: item.placeholder })
+								)
 							);
 						});
 					}
@@ -32027,6 +32083,7 @@
 		},
 		{
 			"id": 1,
+			"default": true,
 			"text": "Проживаете ли по прописке?",
 			"answer": {
 				"yes": null,
@@ -32166,7 +32223,7 @@
 			value: function getPhotos(e) {
 				console.log(e.files);
 				var data = new _formData2.default();
-				data.append('file', e.files[0], e.id + '.jpg');
+				data.append('file', e.files[0], e.id);
 				console.log(data);
 				_superagent2.default.post('/drive').send(data).end(function (err, res) {
 					if (err) console.log(err);
@@ -32180,11 +32237,12 @@
 				var qInputs = document.getElementById('question-form').getElementsByTagName('input');
 				var custInput = document.getElementById('customer-data').getElementsByTagName('input');
 
+				console.log(qInputs[0].parentNode);
 				for (var i = 0, len = qInputs.length; i < len; i++) {
-					if (!qInputs[i].name) {
-						data[qInputs[i].placeholder] = qInputs[i].value;
-					} else if (qInputs[i].name) {
-						if (qInputs[i].checked == true) data[_questions2.default[parseInt(qInputs[i].name, 10)].text] = qInputs[i].value;
+					if (!qInputs[i].name) data[qInputs[i].placeholder] = qInputs[i].value;else if (qInputs[i].parentNode.className == "onoffswitch enable") {
+						data[_questions2.default[parseInt(qInputs[i].id, 10)].text] = "Нет";
+					} else {
+						data[_questions2.default[parseInt(qInputs[i].id, 10)].text] = "Да";
 					}
 				}
 				if (custInput) {
@@ -32192,6 +32250,7 @@
 					data.important.push(custInput[0].name, custInput[0].value);
 					data.important.push(custInput[1].name, custInput[1].value);
 				}
+
 				console.log(data);
 				this.dataUpload(data);
 			}
