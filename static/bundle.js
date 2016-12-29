@@ -21531,10 +21531,6 @@
 
 	var _main_screen2 = _interopRequireDefault(_main_screen);
 
-	var _nav_bar = __webpack_require__(197);
-
-	var _nav_bar2 = _interopRequireDefault(_nav_bar);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21555,12 +21551,7 @@
 		_createClass(App, [{
 			key: 'render',
 			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					{ className: 'container-fluid' },
-					_react2.default.createElement(_nav_bar2.default, null),
-					_react2.default.createElement(_main_screen2.default, null)
-				);
+				return _react2.default.createElement(_main_screen2.default, null);
 			}
 		}]);
 
@@ -21601,6 +21592,10 @@
 
 	var _get_data2 = _interopRequireDefault(_get_data);
 
+	var _nav_bar = __webpack_require__(197);
+
+	var _nav_bar2 = _interopRequireDefault(_nav_bar);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -21611,6 +21606,8 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	console.log(_tabs2.default);
+
 	var MainScreen = function (_Component) {
 		_inherits(MainScreen, _Component);
 
@@ -21619,10 +21616,13 @@
 
 			var _this = _possibleConstructorReturn(this, (MainScreen.__proto__ || Object.getPrototypeOf(MainScreen)).call(this, props));
 
+			var members_count = [{
+				type: "adult"
+			}];
 			_this.state = {
 				workingWithData: new _get_data2.default(),
 				tabs: _tabs2.default,
-				members_count: [],
+				members_count: members_count,
 				focused: 0,
 				memFocused: 0
 			};
@@ -21638,20 +21638,35 @@
 			}
 		}, {
 			key: 'memClicked',
-			value: function memClicked(index) {
+			value: function memClicked(index, type) {
+				console.log(type);
 				this.setState({
-					memFocused: index
+					memFocused: index,
+					current: type
 				});
 			}
 		}, {
 			key: 'memberAddClick',
 			value: function memberAddClick() {
 				var memArr = this.state.members_count;
-				memArr.push({});
+				memArr.push({
+					type: "kid"
+				});
 				this.setState({
 					members_count: memArr
 				});
 			}
+			/*
+	  li onClick={click(тип_визы)}
+	  click(type) { this.setState({current: type})
+	  Поля
+	  input onChange={change(тип_визы, поле)}
+	  change(e, type, field) {this.setState(data[type][field] = e,target.value}
+	  Рендер
+	  {this.state.current === 'ИП' && (<div>123</div>)}
+	  <input value={this.state.ТИП_ВИЗЫ.ПОЛЕ} onChange=выше>
+	  */
+
 		}, {
 			key: 'render',
 			value: function render() {
@@ -21667,7 +21682,8 @@
 				var self = this;
 				return _react2.default.createElement(
 					'div',
-					null,
+					{ className: 'container-fluid' },
+					_react2.default.createElement(_nav_bar2.default, null),
 					_react2.default.createElement(
 						'aside',
 						{ className: 'aside-left' },
@@ -21682,7 +21698,7 @@
 									{ key: i, className: style },
 									_react2.default.createElement(
 										'a',
-										{ onClick: self.memClicked.bind(self, i),
+										{ onClick: self.memClicked.bind(self, i, memArr[i].type),
 											role: 'tab',
 											'data-toggle': 'tab' },
 										_react2.default.createElement('img', { src: 'static/img/user.png', alt: '' })
@@ -21772,30 +21788,45 @@
 					),
 					_react2.default.createElement(
 						'div',
-						{ id: 'second-screen', className: 'content' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'content-top' },
-							_react2.default.createElement(
-								'div',
-								_defineProperty({ className: 'type_tabs' }, 'className', 'btn-group btn-group-justified btn-group-raised'),
-								tabs.map(function (item, i) {
-									var style = "";
-									if (focusedIndex == i) style = 'active';
-									return _react2.default.createElement(
-										'a',
-										{ key: i, onClick: self.clicked.bind(self, i), className: 'btn1 btn ' + style },
-										item.tab
-									);
-								})
-							)
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'content-bottom' },
-							_react2.default.createElement(_photoGen2.default, { tabIndex: this.state.focused, WorkData: this.state.workingWithData }),
-							_react2.default.createElement(_qaGen2.default, { tabIndex: this.state.focused })
-						)
+						{ className: 'content' },
+						memArr.map(function (item, i) {
+							var type = null;
+							if (memFocusedIndex == i) {
+								return _react2.default.createElement(
+									'div',
+									{ id: 'block' + i, name: item.type, key: i },
+									_react2.default.createElement(
+										'div',
+										{ className: 'content-top' },
+										_react2.default.createElement(
+											'div',
+											_defineProperty({ className: 'type_tabs' }, 'className', 'btn-group btn-group-justified btn-group-raised'),
+											tabs.map(function (item1, j) {
+												if (item1[item.type]) {
+													type = item1[item.type];
+													return type.map(function (tab, c) {
+														console.log(tab.tab);
+														var style = "";
+														if (focusedIndex == c) style = 'active';
+														return _react2.default.createElement(
+															'a',
+															{ key: c, onClick: self.clicked.bind(self, c), className: 'btn1 btn ' + style },
+															tab.tab
+														);
+													});
+												}
+											})
+										)
+									),
+									_react2.default.createElement(
+										'div',
+										{ className: 'content-bottom' },
+										_react2.default.createElement(_photoGen2.default, { Type: type, tabIndex: focusedIndex, WorkData: _this2.state.workingWithData }),
+										_react2.default.createElement(_qaGen2.default, { Type: type, tabIndex: focusedIndex })
+									)
+								);
+							}
+						})
 					)
 				);
 			}
@@ -21812,59 +21843,156 @@
 
 	module.exports = [
 		{
-			"tab": "работаю",
-			"docs": [
-				0,
-				2,
-				3
-			],
-			"questions": [
-				2,
-				4
+			"adult": [
+				{
+					"tab": "работаю",
+					"docs": [
+						0,
+						2,
+						3
+					],
+					"questions": [
+						2,
+						4
+					]
+				},
+				{
+					"tab": "безработный",
+					"docs": [
+						0,
+						1,
+						4,
+						0,
+						1
+					],
+					"questions": [
+						0,
+						2,
+						4,
+						1,
+						3
+					]
+				},
+				{
+					"tab": "пенсионер",
+					"docs": [
+						0,
+						1
+					],
+					"questions": [
+						0,
+						2,
+						4,
+						1
+					]
+				},
+				{
+					"tab": "ИП",
+					"docs": [
+						0,
+						1,
+						4,
+						2,
+						1
+					],
+					"questions": [
+						0,
+						2
+					]
+				}
 			]
 		},
 		{
-			"tab": "безработный",
-			"docs": [
-				0,
-				1,
-				4,
-				0,
-				1
-			],
-			"questions": [
-				0,
-				2,
-				4,
-				1,
-				3
+			"kid": [
+				{
+					"tab": "работаю",
+					"docs": [
+						0,
+						2,
+						3
+					],
+					"questions": [
+						2,
+						4
+					]
+				},
+				{
+					"tab": "безработный",
+					"docs": [
+						0,
+						1,
+						4,
+						0,
+						1
+					],
+					"questions": [
+						0,
+						2,
+						4,
+						1,
+						3
+					]
+				}
 			]
 		},
 		{
-			"tab": "пенсионер",
-			"docs": [
-				0,
-				1
-			],
-			"questions": [
-				0,
-				2,
-				4,
-				1
-			]
-		},
-		{
-			"tab": "ИП",
-			"docs": [
-				0,
-				1,
-				4,
-				2,
-				1
-			],
-			"questions": [
-				0,
-				2
+			"young": [
+				{
+					"tab": "работаю",
+					"docs": [
+						0,
+						2,
+						3
+					],
+					"questions": [
+						2,
+						4
+					]
+				},
+				{
+					"tab": "безработный",
+					"docs": [
+						0,
+						1,
+						4,
+						0,
+						1
+					],
+					"questions": [
+						0,
+						2,
+						4,
+						1,
+						3
+					]
+				},
+				{
+					"tab": "пенсионер",
+					"docs": [
+						0,
+						1
+					],
+					"questions": [
+						0,
+						2,
+						4,
+						1
+					]
+				},
+				{
+					"tab": "ИП",
+					"docs": [
+						0,
+						1,
+						4,
+						2,
+						1
+					],
+					"questions": [
+						0,
+						2
+					]
+				}
 			]
 		}
 	];
@@ -21910,7 +22038,7 @@
 			var _this = _possibleConstructorReturn(this, (PhotoGenerator.__proto__ || Object.getPrototypeOf(PhotoGenerator)).call(this, props));
 
 			_this.state = {
-				tabs: _tabs2.default,
+				tabs: _this.props.Type,
 				docs: _docs2.default,
 				workingWithData: _this.props.WorkData
 			};
@@ -21923,10 +22051,13 @@
 				var _this2 = this;
 
 				var tabs = this.state.tabs,
-				    docs = this.state.docs;
+				    docs = this.state.docs,
+				    index = this.props.tabIndex;
 				var handler = function handler(e) {
 					_this2.state.workingWithData.getPhotos(e.target);
 				};
+				if (tabs[index] === undefined) index = 0;
+				console.log(tabs);
 				return _react2.default.createElement(
 					'div',
 					{ className: 'foto-form nano right' },
@@ -21936,7 +22067,7 @@
 						_react2.default.createElement(
 							'form',
 							{ id: 'photo-form', action: '/drive', encType: 'multipart/form-data', method: 'post' },
-							tabs[this.props.tabIndex].docs.map(function (item, i) {
+							tabs[index].docs.map(function (item, i) {
 								for (var j = 0, len = docs.length; j < len; j++) {
 									if (item == docs[j].id) return _react2.default.createElement(
 										'div',
@@ -21954,9 +22085,6 @@
 											)
 										)
 									);
-									/*<label key={i}>{docs[j].text}
-	        												<input id={docs[j].text} type="file" className="photo_upload" name="file" onChange={handler}/>
-	        												   </label>*/
 								}
 							})
 						)
@@ -22047,7 +22175,7 @@
 			var _this = _possibleConstructorReturn(this, (QandAGenerator.__proto__ || Object.getPrototypeOf(QandAGenerator)).call(this, props));
 
 			_this.state = {
-				tabs: _tabs2.default,
+				tabs: _this.props.Type,
 				questions: _questions2.default,
 				country: 0,
 				addField: []
@@ -22061,7 +22189,10 @@
 				var _this2 = this;
 
 				var tabs = this.state.tabs,
-				    questions = this.state.questions;
+				    questions = this.state.questions,
+				    index = this.props.tabIndex;
+
+				if (tabs[index] === undefined) index = 0;
 
 				var Handler = function Handler(event) {
 					event.persist();
@@ -22088,7 +22219,7 @@
 					}
 				};
 
-				return tabs[tabIndex].questions.map(function (item, i) {
+				return tabs[index].questions.map(function (item, i) {
 					var question = questions.filter(function (o) {
 						return o.id === item;
 					});

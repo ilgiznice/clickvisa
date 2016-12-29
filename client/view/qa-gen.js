@@ -8,7 +8,7 @@ export default class QandAGenerator extends Component {
 		super(props);
 
 		this.state = {
-			tabs: tabs,
+			tabs: this.props.Type,
 			questions: questions,
 			country: 0,
 			addField: [],
@@ -17,7 +17,10 @@ export default class QandAGenerator extends Component {
 
 	QuestionsRender(tabIndex, event) {
 		let tabs = this.state.tabs,
-			questions = this.state.questions;
+			questions = this.state.questions,
+			index = this.props.tabIndex;
+	
+		if(tabs[index] === undefined) index = 0;
 
 		let Handler = (event) => {
 			event.persist();
@@ -44,7 +47,7 @@ export default class QandAGenerator extends Component {
 		}
 
 		return (
-			tabs[tabIndex].questions.map((item, i) => {
+			tabs[index].questions.map((item, i) => {
 				let question = questions.filter(o => o.id === item);
 				if (!question.length) return true;
 				else question = question[0];
